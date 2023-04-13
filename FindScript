@@ -1,0 +1,76 @@
+1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+public class Difference : MonoBehaviour
+{
+    public static event Action DifferenceClicked = delegate { };
+
+    [SerializeField]
+    private GameObject pair;
+
+    private SpriteRenderer spRend;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        spRend = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnMouseDown()
+    {
+        if (spRend.enabled)
+        {
+            pair.GetComponent<SpriteRenderer>().enabled = true;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            pair.GetComponent<BoxCollider2D>().enabled = false;
+            DifferenceClicked();
+        }
+        else
+        {
+            spRend.enabled = true;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            pair.GetComponent<BoxCollider2D>().enabled = false;
+            DifferenceClicked();
+        }
+    }
+}
